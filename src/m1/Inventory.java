@@ -5,6 +5,8 @@
  */
 package m1;
 
+import m1.item.Item;
+
 import java.util.ArrayList;
 
 /**

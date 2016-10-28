@@ -1,10 +1,10 @@
 package m1.map;
 
 import libs.FileIO;
-import m1.HealthBoostItem;
-import m1.Item;
+import m1.item.HealthBoostItem;
+import m1.item.Item;
 import m1.Room;
-import m1.Weapon;
+import m1.item.Weapon;
 
 import java.io.IOException;
 import java.util.ArrayList;

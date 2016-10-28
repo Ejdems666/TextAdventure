@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package m1;
+package m1.item;
 
 /**
  *
  * @author thomasthimothee
  */
-public class HealthBoostItem extends Item
+public class Weapon extends Item
 {
-
-    public int use()
+    
+    public int Use()
     {
-        return this.getHealthBoost();
+        return this.getDamage();
     }
     
 }

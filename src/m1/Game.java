@@ -39,8 +39,12 @@ public class Game
                 return;
             }
             System.out.println(desc); // in command interpreter class the interpret method contains at the end the description
+            if (player.getCurrentRoom().exitCount() == 0) {
+                System.out.println("Goodbye!");
+                return;
+            }
         }                            // of the current room and of player status
     }
-    
-    
+
+
 }
