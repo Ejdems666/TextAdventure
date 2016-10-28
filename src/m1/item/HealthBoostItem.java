@@ -11,10 +11,8 @@ package m1.item;
  */
 public class HealthBoostItem extends Item
 {
-
     public int use()
     {
         return this.getHealthBoost();
     }
-    
 }

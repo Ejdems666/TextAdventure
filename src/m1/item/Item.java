@@ -9,7 +9,7 @@ package m1.item;
  *
  * @author thomasthimothee
  */
-public class Item {
+public abstract class Item {
     private String name;
     private int damage;
     private int healthBoost;
@@ -46,9 +46,6 @@ public class Item {
     public void setTemporary(boolean temporary) {
         this.temporary = temporary;
     }
-    
-    
-    
-    
-    
+
+    public abstract int use();
 }

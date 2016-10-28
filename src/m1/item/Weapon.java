@@ -11,10 +11,10 @@ package m1.item;
  */
 public class Weapon extends Item
 {
-    
-    public int Use()
+
+    public int use()
     {
         return this.getDamage();
     }
-    
+
 }
