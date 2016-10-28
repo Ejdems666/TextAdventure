@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Room
 {
-    private final String description; 
+    private String description;
     private Room north;
     private Room east;
     private Room south;
@@ -21,13 +21,8 @@ public class Room
     private int gold;
     private Inventory inventory;
     
-    public Room(String description)
+    public Room()
     {
-        if(description == null)
-        {
-            throw new NullPointerException("description may not be null");
-        }
-        this.description = description;
         north = null;
         east = null;
         south = null;
@@ -35,7 +30,11 @@ public class Room
         gold = 0;
         inventory = new Inventory();
     }
-    
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int exitCount()
     {
         int res = 0;
@@ -81,33 +80,23 @@ public class Room
         this.gold = gold;
     }
     
-    public void connectNorth(Room other)
-    {
-        other.south = this;
-        this.north = other;
-    }
-    
-    public void connectEast(Room other)
-    {
-        other.west = this;
-        this.east = other;
-    }
-    
-    public void connectSouth(Room other)
-    {
-        other.north = this;
-        this.south = other;
-    }
-    
-    public void connectWest(Room other)
-    {
-        other.east = this;
-        this.west = other;
-    }
-    
     public Inventory getInventory() { // want to print the inventory
         return inventory;
     }
-    
- 
+
+    public void setNorth(Room north) {
+        this.north = north;
+    }
+
+    public void setEast(Room east) {
+        this.east = east;
+    }
+
+    public void setSouth(Room south) {
+        this.south = south;
+    }
+
+    public void setWest(Room west) {
+        this.west = west;
+    }
 }

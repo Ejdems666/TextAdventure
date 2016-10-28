@@ -8,7 +8,6 @@ package libs;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,17 +17,15 @@ import java.util.ArrayList;
  * @author Tobias Grundtvig
  */
 public class FileIO {
-    private String path;
+    private String path = "resources/";
 
-    public FileIO(String path) {
+    public void setPath(String path) {
         this.path = path;
-    }
-    public FileIO() {
-        path = "../resources/";
     }
 
     public ArrayList<String> readFile(String fileName) throws IOException {
-        BufferedReader buffered = new BufferedReader(new FileReader(path + fileName));
+        File file = new File(fileName);
+        BufferedReader buffered = new BufferedReader(new FileReader(file.getAbsolutePath()));
         ArrayList<String> contents = new ArrayList<>();
         try {
             String line = buffered.readLine();
