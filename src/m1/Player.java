@@ -23,6 +23,10 @@ public class Player
         this.gold = 0;
         inventory = new Inventory();
     }
+
+public Room getCurrentRoom() {
+    return currentRoom;
+}
     
     public String describe()
     {
@@ -30,7 +34,17 @@ public class Player
         res.append(currentRoom.getDescription());
         res.append("\nYou have ").append(asGold(gold)).append(".\n");
         res.append("This room contains ").append(asGold(currentRoom.getGold())).append(".\n");
-        res.append("This room contains").append(getInventory().toString()).append(".\n");
+        String inventoryRoomPrint = currentRoom.getInventory().toString();
+        if (!inventoryRoomPrint.isEmpty())
+        {
+                res.append("This room contains a ").append(currentRoom.getInventory().toString()).append(".\n");
+        }
+        String inventoryPlayerPrint = this.getInventory().toString();
+        if (!inventoryPlayerPrint.isEmpty())
+        {
+            res.append("You have ").append(this.getInventory().toString()).append(".\n");
+        }
+        
         int exits = currentRoom.exitCount();
         switch(exits)
         {

@@ -68,6 +68,18 @@ public class CommandInterpretor
                 int gold = player.takeGold();
                 res.append("You picked up ").append(Player.asGold(gold)).append(".\n");
                 break;
+            case "pick up item":
+                player.getInventory().addToInventory(player.getCurrentRoom().getInventory().PickUp(0));
+                break;
+            case "pick up gold":
+                player.takeGold();
+                break;
+            case "my inv":    
+                res.append(player.getInventory().toString());
+                break;
+            case "room inv":   
+                res.append(player.getCurrentRoom().getInventory().toString());
+                break;
             case "quit":
                 return null;
             default:

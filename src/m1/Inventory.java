@@ -22,9 +22,12 @@ public class Inventory {
         inventory.add(item);
     }
     
-    public void deleteFromInventory (Item item)
+    public Item PickUp (int index)
     {
-        inventory.remove(item);
+        Item item = inventory.get(index);
+        inventory.remove(index);
+        return item;
+        
     }
        
     @Override
@@ -33,10 +36,9 @@ public class Inventory {
         StringBuilder res = new StringBuilder();
         for (int i= 0; i < inventory.size(); i++)
         {
-            res.append(inventory.get(i));
-            res.append(" ,");
+            res.append(inventory.get(i).getName());
+            res.append(" ");
         }
-        res.append(" .");
         return res.toString();  //this toString is another toString, it is the toString method of the obecjt res which is a StringBuilder  
     }
     
