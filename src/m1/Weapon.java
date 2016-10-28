@@ -12,10 +12,6 @@ package m1;
 public class Weapon extends Item
 {
     
-    public Weapon(String name, int damage, int healthBoost, boolean temporary) {
-        super(name, damage, healthBoost, temporary);
-    }
-    
     public int Use()
     {
         return this.getDamage();

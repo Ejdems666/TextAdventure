@@ -1,7 +1,10 @@
 package m1.map;
 
 import libs.FileIO;
+import m1.HealthBoostItem;
+import m1.Item;
 import m1.Room;
+import m1.Weapon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -72,6 +75,27 @@ public class DungeonMap {
         if(resources.length > 2 && !resources[2].isEmpty()) {
             String description = resources[2];
             room.setDescription(description);
+        }
+        if(resources.length > 3) {
+            String[] items = resources[3].split(";");
+            String[] itemResources;
+            for (int i = 0; i < items.length; i++) {
+                itemResources = items[i].split(":");
+                Item item = null;
+                switch (itemResources[0]) {
+                    case "w":
+                        item = new Weapon();
+                        break;
+                    case "h":
+                        item = new HealthBoostItem();
+                        break;
+                }
+                item.setName(itemResources[1]);
+                item.setDamage(Integer.parseInt(itemResources[2]));
+                item.setHealthBoost(Integer.parseInt(itemResources[3]));
+                item.setTemporary(Boolean.parseBoolean(itemResources[4]));
+                room.getInventory().addToInventory(item);
+            }
         }
     }
 }

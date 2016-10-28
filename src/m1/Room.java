@@ -13,23 +13,13 @@ import java.util.ArrayList;
  */
 public class Room
 {
-    private String description;
+    private String description = "";
     private Room north;
     private Room east;
     private Room south;
     private Room west;
-    private int gold;
-    private Inventory inventory;
-    
-    public Room()
-    {
-        north = null;
-        east = null;
-        south = null;
-        west = null;
-        gold = 0;
-        inventory = new Inventory();
-    }
+    private int gold = 0;
+    private Inventory inventory = new Inventory();
 
     public void setDescription(String description) {
         this.description = description;

@@ -15,17 +15,6 @@ public class Item {
     private int healthBoost;
     private boolean temporary;
 
-    public Item(String name, int damage, int healthBoost, boolean temporary) {
-        this.name = name;
-        this.damage = damage;
-        this.healthBoost = healthBoost;
-        this.temporary = temporary;
-    }
-
-    Item() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public String getName() {
         return name;
     }

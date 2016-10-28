@@ -11,11 +11,7 @@ package m1;
  */
 public class HealthBoostItem extends Item
 {
-    
-    public HealthBoostItem(String name, int damage, int healthBoost, boolean temporary) {
-        super(name, damage, healthBoost, temporary);
-    }
-    
+
     public int use()
     {
         return this.getHealthBoost();
