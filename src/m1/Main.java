@@ -19,12 +19,11 @@ public class Main
     {
         //Build the dungeon
         DungeonMap map = new DungeonMap();
-        Room[] rooms = map.createDungeonMap();
-        Room start = rooms[0];
+        ArrayList<Room> rooms = map.createDungeonMap();
+        Room start = rooms.get(0);
 
         //Run the game
         Game game = new Game(start);
         game.run();
-        
     }
 }

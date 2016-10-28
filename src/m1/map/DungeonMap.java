@@ -14,15 +14,19 @@ import java.util.ArrayList;
  */
 public class DungeonMap {
 
-    private Room[] rooms;
+    private ArrayList<Room> rooms;
 
-    public Room[] createDungeonMap() {
-        // TODO: implement reading from a file
+    public ArrayList<Room> createDungeonMap() {
         ArrayList<String> mapData = getMapResource();
         createRooms(mapData);
         for (int i = 0; i < mapData.size(); i++) {
             String[] roomData = mapData.get(i).split(",");
-            setRoom(roomData, rooms[i]);
+            try {
+                setRoom(roomData, rooms.get(i));
+            } catch (MapGeneratorException e) {
+                System.out.println(e.getMessage());
+                System.exit(1);
+            }
         }
         return rooms;
     }
@@ -39,34 +43,37 @@ public class DungeonMap {
     }
 
     private void createRooms(ArrayList<String> mapData) {
-        rooms = new Room[mapData.size()];
+        rooms = new ArrayList<>();
         for (int i = 0; i < mapData.size(); i++) {
-            rooms[i] = new Room();
+            rooms.add(new Room());
         }
     }
 
-    private void setRoom(String[] roomData, Room room) {
+    private void setRoom(String[] roomData, Room room) throws MapGeneratorException {
         setResources(roomData[0], room);
         for (int ii = 1; ii < roomData.length; ii++) {
             int connection = Integer.parseInt(roomData[ii].substring(1));
-            switch (roomData[ii].charAt(0)) {
+            char direction = roomData[ii].charAt(0);
+            switch (direction) {
                 case 'e':
-                    room.setEast(rooms[connection]);
+                    room.setEast(rooms.get(connection));
                     break;
                 case 'w':
-                    room.setWest(rooms[connection]);
+                    room.setWest(rooms.get(connection));
                     break;
                 case 's':
-                    room.setSouth(rooms[connection]);
+                    room.setSouth(rooms.get(connection));
                     break;
                 case 'n':
-                    room.setNorth(rooms[connection]);
+                    room.setNorth(rooms.get(connection));
                     break;
+                default:
+                    throw new MapGeneratorException(rooms.indexOf(room),"Error while adding connections. Non existent connection '"+direction+"'");
             }
         }
     }
 
-    private void setResources(String roomResources, Room room) {
+    private void setResources(String roomResources, Room room) throws MapGeneratorException {
         String[] resources = roomResources.split("-");
         if(resources.length > 1 && !resources[1].isEmpty()) {
             int gold = Integer.parseInt(resources[1]);
@@ -77,25 +84,31 @@ public class DungeonMap {
             room.setDescription(description);
         }
         if(resources.length > 3) {
-            String[] items = resources[3].split(";");
-            String[] itemResources;
-            for (int i = 0; i < items.length; i++) {
-                itemResources = items[i].split(":");
-                Item item = null;
-                switch (itemResources[0]) {
-                    case "w":
-                        item = new Weapon();
-                        break;
-                    case "h":
-                        item = new HealthBoostItem();
-                        break;
-                }
-                item.setName(itemResources[1]);
-                item.setDamage(Integer.parseInt(itemResources[2]));
-                item.setHealthBoost(Integer.parseInt(itemResources[3]));
-                item.setTemporary(Boolean.parseBoolean(itemResources[4]));
-                room.getInventory().addToInventory(item);
+            setItems(room, resources[3]);
+        }
+    }
+
+    private void setItems(Room room, String resource) throws MapGeneratorException {
+        String[] items = resource.split(";");
+        String[] itemResources;
+        for (int i = 0; i < items.length; i++) {
+            itemResources = items[i].split(":");
+            Item item = null;
+            switch (itemResources[0]) {
+                case "w":
+                    item = new Weapon();
+                    break;
+                case "h":
+                    item = new HealthBoostItem();
+                    break;
+                default:
+                    throw new MapGeneratorException(rooms.indexOf(room),"You didn't specify item type.");
             }
+            item.setName(itemResources[1]);
+            item.setDamage(Integer.parseInt(itemResources[2]));
+            item.setHealthBoost(Integer.parseInt(itemResources[3]));
+            item.setTemporary(Boolean.parseBoolean(itemResources[4]));
+            room.getInventory().addToInventory(item);
         }
     }
 }
