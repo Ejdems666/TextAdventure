@@ -8,41 +8,31 @@ package m1;
 import java.util.Scanner;
 
 /**
- *
  * @author Tobias Grundtvig
  */
-public class Game
-{
+public class Game {
     private final Player player;
     private final CommandInterpretor cmdInt;
     private final Scanner scanner;
 
-    public Game(Room startRoom)
-    {
+    public Game(Room startRoom) {
         player = new Player(startRoom);
         cmdInt = new CommandInterpretor(player);
         scanner = new Scanner(System.in);
     }
-    
-    public void run()
-    {
+
+    public void run() {
         System.out.println("Welcome to the text adventure.");
         System.out.println(player.describe());
-        while(true)
-        {
+        while (true) {
             System.out.print(">");
             String cmd = scanner.nextLine().trim();
-            String desc = cmdInt.interpret(cmd);
-            if(desc == null)
-            {
+            String description = cmdInt.interpret(cmd);
+            if (description == null) {
                 System.out.println("\n\nGoodbye!\n");
                 return;
             }
-            System.out.println(desc); // in command interpreter class the interpret method contains at the end the description
-            if (player.getCurrentRoom().exitCount() == 0) {
-                System.out.println("Goodbye!");
-                return;
-            }
+            System.out.println(description); // in command interpreter class the interpret method contains at the end the description
         }                            // of the current room and of player status
     }
 
