@@ -16,12 +16,21 @@ public class Player
     private Room currentRoom;
     private int gold;
     private Inventory inventory;
+    private String name;
 
     public Player(Room startRoom)
     {
         this.currentRoom = startRoom;
         this.gold = 0;
         inventory = new Inventory();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 public Room getCurrentRoom() {
@@ -141,6 +150,10 @@ public Room getCurrentRoom() {
 
     public Inventory getInventory() { // want to print the inventory
         return inventory;
+    }
+
+    public int getGold() {
+        return gold;
     }
 
     

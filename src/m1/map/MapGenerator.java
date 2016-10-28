@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by Ejdems on 10/10/2016.
  */
-public class DungeonMap {
+public class MapGenerator {
 
     private ArrayList<Room> rooms;
 

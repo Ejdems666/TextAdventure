@@ -5,7 +5,7 @@
  */
 package m1;
 
-import m1.map.DungeonMap;
+import m1.map.MapGenerator;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,7 @@ public class Main
     public static void main(String[] args)
     {
         //Build the dungeon
-        DungeonMap map = new DungeonMap();
+        MapGenerator map = new MapGenerator();
         ArrayList<Room> rooms = map.createDungeonMap();
         Room start = rooms.get(0);
 
