@@ -5,6 +5,8 @@
  */
 package m1;
 
+import m1.cmd.CommandInterpretor;
+
 import java.util.Scanner;
 
 /**
