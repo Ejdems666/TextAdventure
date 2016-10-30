@@ -12,6 +12,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import m1.cmd.CommandInterpretor;
+
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +52,7 @@ public class Game {
             System.out.println(description); // in command interpreter class the interpret method contains at the end the description
         }                            // of the current room and of player status
     }
-    
+
 public void writeScore()
 {
     try(FileWriter fw = new FileWriter("scores.txt", true);
@@ -58,8 +60,8 @@ public void writeScore()
         PrintWriter out = new PrintWriter(bw))
     {
         out.println(player.getName()+ " won "+ player.asGold(player.getGold()));
-    } 
-    catch (IOException e) 
+    }
+    catch (IOException e)
     {
     //exception handling left as an exercise for the reader
     }
@@ -77,7 +79,7 @@ public void readScores()
   } catch (FileNotFoundException e)
   {
       System.out.println("file not found");
-  } 
+  }
 }
 
 }// game
