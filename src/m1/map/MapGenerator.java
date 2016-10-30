@@ -35,7 +35,7 @@ public class MapGenerator {
         FileIO fileIO = new FileIO();
         ArrayList<String> map = null;
         try {
-            map = fileIO.readFile("resources/map.txt");
+            map = fileIO.readFile("map.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }

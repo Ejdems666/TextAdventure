@@ -5,12 +5,7 @@
  */
 package libs;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +19,7 @@ public class FileIO {
     }
 
     public ArrayList<String> readFile(String fileName) throws IOException {
-        File file = new File(fileName);
+        File file = new File(path + fileName);
         BufferedReader buffered = new BufferedReader(new FileReader(file.getAbsolutePath()));
         ArrayList<String> contents = new ArrayList<>();
         try {
@@ -51,6 +46,19 @@ public class FileIO {
                 }
             } catch (Exception e) {
             }
+        }
+    }
+
+    public void appendToFile(String fileName, String content) {
+        try(FileWriter fw = new FileWriter(path+fileName, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter out = new PrintWriter(bw))
+        {
+            out.println(content);
+        }
+        catch (IOException e)
+        {
+            //exception handling left as an exercise for the reader
         }
     }
 }

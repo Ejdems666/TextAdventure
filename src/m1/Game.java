@@ -12,12 +12,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import libs.FileIO;
 import m1.cmd.CommandInterpretor;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 
 /**
@@ -27,11 +29,13 @@ public class Game {
     private final Player player;
     private final CommandInterpretor cmdInt;
     private final Scanner scanner;
+    FileIO fieIo;
 
     public Game(Room startRoom) {
         player = new Player(startRoom);
         cmdInt = new CommandInterpretor(player);
         scanner = new Scanner(System.in);
+        fieIo = new FileIO();
     }
 
     public void run() {
@@ -44,7 +48,7 @@ public class Game {
             String cmd = scanner.nextLine().trim();
             String description = cmdInt.interpret(cmd);
             if (description == null) {
-                System.out.println("\n\nGoodbye! " + player.getName()+ ".\n");
+                System.out.println("\n\nGoodbye! " + player.getName() + ".\n");
                 writeScore();
                 readScores();
                 return;
@@ -53,34 +57,20 @@ public class Game {
         }                            // of the current room and of player status
     }
 
-public void writeScore()
-{
-    try(FileWriter fw = new FileWriter("scores.txt", true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter out = new PrintWriter(bw))
-    {
-        out.println(player.getName()+ " won "+ player.asGold(player.getGold()));
+    public void writeScore() {
+        fieIo.appendToFile("scores.txt", player.getName() + " won " + Player.asGold(player.getGold()));
     }
-    catch (IOException e)
-    {
-    //exception handling left as an exercise for the reader
-    }
-}
 
-public void readScores()
-{
-  try {
-   File file = new File("scores.txt");
-   Scanner scanner = new Scanner(file);
-   while (scanner.hasNext()) {
-    System.out.println(scanner.nextLine());
-   }
-   scanner.close();
-  } catch (FileNotFoundException e)
-  {
-      System.out.println("file not found");
-  }
-}
+    public void readScores() {
+        try {
+            ArrayList<String> contents = fieIo.readFile("scores.txt");
+            for (String content : contents) {
+                System.out.println(content);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }// game
 
