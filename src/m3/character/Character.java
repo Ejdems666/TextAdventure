@@ -5,6 +5,6 @@ import m3.Room;
 /**
  * Created by Ejdems on 03/11/2016.
  */
-public abstract class Character implements IFighter {
+public abstract class Character implements ICharacter {
     protected Room currentRoom;
 }

@@ -3,5 +3,5 @@ package m3.character;
 /**
  * Created by Ejdems on 03/11/2016.
  */
-public class ComputerMonster implements IFighter, ICharacterController {
+public class ComputerMonster extends Character implements ICharacterController {
 }
