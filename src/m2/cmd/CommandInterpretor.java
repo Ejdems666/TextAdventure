@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package m1.cmd;
+package m2.cmd;
 
-import m1.Player;
+import m2.Player;
 
 /**
  * @author Tobias Grundtvig

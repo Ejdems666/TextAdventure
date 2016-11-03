@@ -1,4 +1,4 @@
-package m1.cmd;
+package m2.cmd;
 
 /**
  * Created by Ejdems on 28/10/2016.

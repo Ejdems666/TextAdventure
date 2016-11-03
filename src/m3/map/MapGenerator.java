@@ -1,10 +1,10 @@
-package m1.map;
+package m3.map;
 
 import libs.FileIO;
-import m1.item.HealthBoostItem;
-import m1.item.Item;
-import m1.Room;
-import m1.item.Weapon;
+import m3.item.HealthBoostItem;
+import m3.item.Item;
+import m3.Room;
+import m3.item.Weapon;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +15,13 @@ import java.util.ArrayList;
 public class MapGenerator {
 
     private ArrayList<Room> rooms;
+    private String fileName;
 
-    public ArrayList<Room> createDungeonMap() {
+    public MapGenerator(String fileName) {
+        this.fileName = fileName;
+    }
+
+    public Room createDungeonMap() {
         ArrayList<String> mapData = getMapResource();
         createRooms(mapData);
         for (int i = 0; i < mapData.size(); i++) {
@@ -28,14 +33,14 @@ public class MapGenerator {
                 System.exit(1);
             }
         }
-        return rooms;
+        return rooms.get(0);
     }
 
     private ArrayList<String> getMapResource() {
         FileIO fileIO = new FileIO();
         ArrayList<String> map = null;
         try {
-            map = fileIO.readFile("map.txt");
+            map = fileIO.readFile(fileName);
         } catch (IOException e) {
             e.printStackTrace();
         }

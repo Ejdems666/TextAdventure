@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package m1;
+package m2;
 
-import m1.item.Item;
+import m2.item.Item;
 
 import java.util.ArrayList;
 

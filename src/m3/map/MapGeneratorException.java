@@ -1,6 +1,4 @@
-package m1.map;
-
-import m1.Room;
+package m3.map;
 
 /**
  * Created by Ejdems on 28/10/2016.
