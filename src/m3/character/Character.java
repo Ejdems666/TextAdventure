@@ -12,6 +12,7 @@ public abstract class Character implements ICharacter, ICharacterController {
     protected int strength;
     protected int defense;
     protected int gold;
+    protected String status;
 
     @Override
     public void setGold(int gold) {
@@ -46,5 +47,10 @@ public abstract class Character implements ICharacter, ICharacterController {
     @Override
     public int getGold() {
         return gold;
+    }
+
+    @Override
+    public String getStatus() {
+        return status;
     }
 }

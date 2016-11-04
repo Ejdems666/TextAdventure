@@ -13,4 +13,5 @@ public interface ICharacterInfo {
     public String getName();
     public IRoom getCurrentRoom();
     public int getGold();
+    public String getStatus();
 }

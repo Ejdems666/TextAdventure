@@ -34,6 +34,10 @@ public class Room implements IRoom,IRoomPassages
         this.monsters.remove(monster);
     }
 
+    public ICharacter getMonster() {
+        return monsters.get(0);
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }

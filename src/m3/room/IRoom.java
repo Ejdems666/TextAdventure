@@ -11,6 +11,8 @@ public interface IRoom {
 
     public void removeMonster(ICharacter monster);
 
+    public ICharacter getMonster();
+
     public void setDescription(String description);
 
     public String getDescription();

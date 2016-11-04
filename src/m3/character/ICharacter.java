@@ -12,5 +12,7 @@ public interface ICharacter extends ICharacterInfo{
 
     public void takeDamage(int damage);
 
+    public void defend();
+
     public void setGold(int gold);
 }
