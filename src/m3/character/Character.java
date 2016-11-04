@@ -1,19 +1,25 @@
 package m3.character;
 
-import m3.Room;
+import m3.room.IRoom;
 
 /**
  * Created by Ejdems on 03/11/2016.
  */
 public abstract class Character implements ICharacter, ICharacterController {
-    protected Room currentRoom;
+    protected IRoom currentRoom;
     protected String name;
     protected int health;
     protected int strength;
     protected int defense;
+    protected int gold;
 
     @Override
-    public Room getCurrentRoom() {
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    @Override
+    public IRoom getCurrentRoom() {
         return currentRoom;
     }
 
@@ -35,5 +41,10 @@ public abstract class Character implements ICharacter, ICharacterController {
     @Override
     public int getDefense() {
         return defense;
+    }
+
+    @Override
+    public int getGold() {
+        return gold;
     }
 }

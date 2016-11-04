@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package m3;
+package m3.room;
 
 
+import m3.Inventory;
 import m3.character.ICharacter;
 
 import java.util.ArrayList;
@@ -14,9 +15,9 @@ import java.util.ArrayList;
  *
  * @author Tobias Grundtvig
  */
-public class Room
+public class Room implements IRoom,IRoomPassages
 {
-    private ICharacter monster = null;
+    private ArrayList<ICharacter> monsters = new ArrayList<>();
     private String description = "";
     private Room north;
     private Room east;
@@ -25,8 +26,12 @@ public class Room
     private int gold = 0;
     private Inventory inventory = new Inventory();
 
-    public void setMonster(ICharacter monster) {
-        this.monster = monster;
+    public void addMonster(ICharacter monster) {
+        this.monsters.add(monster);
+    }
+
+    public void removeMonster(ICharacter monster) {
+        this.monsters.remove(monster);
     }
 
     public void setDescription(String description) {

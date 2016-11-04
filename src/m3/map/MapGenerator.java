@@ -1,9 +1,13 @@
 package m3.map;
 
 import libs.FileIO;
+import m3.character.BasicMonster;
+import m3.character.ICharacter;
 import m3.item.HealthBoostItem;
 import m3.item.Item;
-import m3.Room;
+import m3.room.IRoom;
+import m3.room.IRoomPassages;
+import m3.room.Room;
 import m3.item.Weapon;
 
 import java.io.IOException;
@@ -21,13 +25,14 @@ public class MapGenerator {
         this.fileName = fileName;
     }
 
-    public Room createDungeonMap() {
+    public IRoom createDungeonMap() {
         ArrayList<String> mapData = getMapResource();
         createRooms(mapData);
         for (int i = 0; i < mapData.size(); i++) {
             String[] roomData = mapData.get(i).split(",");
             try {
-                setRoom(roomData, rooms.get(i));
+                setRoomPassages(roomData, rooms.get(i));
+                setRoomResources(roomData[0], rooms.get(i));
             } catch (MapGeneratorException e) {
                 System.out.println(e.getMessage());
                 System.exit(1);
@@ -54,8 +59,7 @@ public class MapGenerator {
         }
     }
 
-    private void setRoom(String[] roomData, Room room) throws MapGeneratorException {
-        setResources(roomData[0], room);
+    private void setRoomPassages(String[] roomData, IRoomPassages room) throws MapGeneratorException {
         for (int ii = 1; ii < roomData.length; ii++) {
             int connection = Integer.parseInt(roomData[ii].substring(1));
             char direction = roomData[ii].charAt(0);
@@ -73,12 +77,12 @@ public class MapGenerator {
                     room.setNorth(rooms.get(connection));
                     break;
                 default:
-                    throw new MapGeneratorException(rooms.indexOf(room),"Error while adding connections. Non existent connection '"+direction+"'");
+                    throw new MapGeneratorException(rooms.indexOf(room),"Non existent connection '"+direction+"'");
             }
         }
     }
 
-    private void setResources(String roomResources, Room room) throws MapGeneratorException {
+    private void setRoomResources(String roomResources, IRoom room) throws MapGeneratorException {
         String[] resources = roomResources.split("-");
         if(resources.length > 1 && !resources[1].isEmpty()) {
             int gold = Integer.parseInt(resources[1]);
@@ -91,9 +95,12 @@ public class MapGenerator {
         if(resources.length > 3) {
             setItems(room, resources[3]);
         }
+        if(resources.length > 4) {
+            setMonsters(room, resources[4]);
+        }
     }
 
-    private void setItems(Room room, String resource) throws MapGeneratorException {
+    private void setItems(IRoom room, String resource) throws MapGeneratorException {
         String[] items = resource.split(";");
         String[] itemResources;
         for (int i = 0; i < items.length; i++) {
@@ -107,13 +114,37 @@ public class MapGenerator {
                     item = new HealthBoostItem();
                     break;
                 default:
-                    throw new MapGeneratorException(rooms.indexOf(room),"You didn't specify item type.");
+                    throw new MapGeneratorException(rooms.indexOf(room),"Unknown item type.");
             }
             item.setName(itemResources[1]);
             item.setDamage(Integer.parseInt(itemResources[2]));
             item.setHealthBoost(Integer.parseInt(itemResources[3]));
             item.setTemporary(Boolean.parseBoolean(itemResources[4]));
             room.getInventory().addToInventory(item);
+        }
+    }
+
+    private void setMonsters(IRoom room, String resource) throws MapGeneratorException {
+        String[] monstersResources = resource.split(";");
+        String[] monsterResources;
+        for (int i = 0; i < monstersResources.length; i++) {
+            monsterResources = monstersResources[i].split(":");
+            ICharacter monster = null;
+            switch (monsterResources[0]) {
+                case "m":
+                    monster = new BasicMonster(
+                            room,
+                            monsterResources[1],
+                            Integer.parseInt(monsterResources[3]),
+                            Integer.parseInt(monsterResources[4]),
+                            Integer.parseInt(monsterResources[5])
+                    );
+                    break;
+                default:
+                    throw new MapGeneratorException(rooms.indexOf(room),"Unknown monster type.");
+            }
+            monster.setGold(Integer.parseInt(monsterResources[2]));
+            room.addMonster(monster);
         }
     }
 }

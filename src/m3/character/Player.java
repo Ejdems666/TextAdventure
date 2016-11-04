@@ -1,6 +1,6 @@
 package m3.character;
 
-import m3.Room;
+import m3.room.Room;
 
 /**
  * Created by Ejdems on 03/11/2016.

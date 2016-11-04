@@ -5,12 +5,14 @@ import m3.character.ComputerPlayer;
 import m3.character.HumanPlayer;
 import m3.map.MapGenerator;
 import libs.form.Form;
+import m3.room.IRoom;
+import m3.room.Room;
 
 /**
  * Created by Ejdems on 03/11/2016.
  */
 public class Initiator {
-    public Character createPlayer(Room startingRoom) {
+    public Character createPlayer(IRoom startingRoom) {
         Form form = createPlayerForm();
         form.askForAllFields();
         Character player;
@@ -29,7 +31,7 @@ public class Initiator {
         return form;
     }
 
-    public Room createMap() {
+    public IRoom createMap() {
         Form form = createMapForm();
         form.askForAllFields();
         MapGenerator map = new MapGenerator(form.get("name")+".txt");

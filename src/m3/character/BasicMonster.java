@@ -1,13 +1,17 @@
 package m3.character;
 
-import m3.Room;
+import m3.room.IRoom;
 
 /**
  * Created by Ejdems on 03/11/2016.
  */
-public class ComputerMonster extends Monster {
-    public ComputerMonster(Room startingRoom) {
+public class BasicMonster extends Monster {
+    public BasicMonster(IRoom startingRoom, String name, int health, int strength, int defense) {
         currentRoom = startingRoom;
+        this.name = name;
+        this.health = health;
+        this.strength = strength;
+        this.defense = defense;
     }
 
     @Override
