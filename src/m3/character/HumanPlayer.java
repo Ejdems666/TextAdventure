@@ -9,4 +9,9 @@ public class HumanPlayer extends Warrior implements ICharacterController {
     public HumanPlayer(Room startingRoom) {
         currentRoom = startingRoom;
     }
+
+    @Override
+    public String getCommand() {
+        return null;
+    }
 }

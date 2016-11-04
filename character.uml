@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>m3.character</OriginalElement>
+  <nodes>
+    <node x="-82.0" y="199.0">m3.character.Character</node>
+    <node x="19.0" y="555.0">m3.character.ComputerPlayer</node>
+    <node x="-46.5" y="54.0">m3.character.ICharacter</node>
+    <node x="165.75" y="410.0">m3.character.Warrior</node>
+    <node x="-23.25" y="421.0">m3.character.ICharacterController</node>
+    <node x="-44.5" y="-135.0">m3.character.ICharacterInfo</node>
+    <node x="208.5" y="555.0">m3.character.HumanPlayer</node>
+    <node x="-210.0" y="533.0">m3.character.ComputerMonster</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="m3.character.ComputerMonster" target="m3.character.ICharacterController">
+      <point x="52.25" y="-47.5" />
+      <point x="-53.25" y="513.0" />
+      <point x="4.916666666666657" y="513.0" />
+      <point x="-56.333333333333336" y="25.5" />
+    </edge>
+    <edge source="m3.character.Character" target="m3.character.ICharacter">
+      <point x="0.0" y="-80.5" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="m3.character.ComputerMonster" target="m3.character.Character">
+      <point x="-52.25" y="-47.5" />
+      <point x="-157.75" y="385.0" />
+      <point x="-10.75" y="385.0" />
+      <point x="-71.25" y="80.5" />
+    </edge>
+    <edge source="m3.character.HumanPlayer" target="m3.character.Warrior">
+      <point x="42.25" y="-25.5" />
+      <point x="56.5" y="36.5" />
+    </edge>
+    <edge source="m3.character.Warrior" target="m3.character.Character">
+      <point x="0.0" y="-36.5" />
+      <point x="278.75" y="385.0" />
+      <point x="131.75" y="385.0" />
+      <point x="71.25" y="80.5" />
+    </edge>
+    <edge source="m3.character.ComputerPlayer" target="m3.character.Warrior">
+      <point x="42.25" y="-25.5" />
+      <point x="145.75" y="513.0" />
+      <point x="222.25" y="513.0" />
+      <point x="-56.5" y="36.5" />
+    </edge>
+    <edge source="m3.character.ICharacter" target="m3.character.ICharacterInfo">
+      <point x="0.0" y="-47.5" />
+      <point x="0.0" y="69.5" />
+    </edge>
+    <edge source="m3.character.HumanPlayer" target="m3.character.ICharacterController">
+      <point x="-42.25" y="-25.5" />
+      <point x="250.75" y="503.0" />
+      <point x="117.58333333333337" y="503.0" />
+      <point x="56.33333333333334" y="25.5" />
+    </edge>
+    <edge source="m3.character.ComputerPlayer" target="m3.character.ICharacterController">
+      <point x="-42.25" y="-25.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8" x="196.625" y="249.625" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

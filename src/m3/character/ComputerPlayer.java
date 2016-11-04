@@ -9,4 +9,9 @@ public class ComputerPlayer extends Warrior implements ICharacterController {
     public ComputerPlayer(Room startingRoom) {
         currentRoom = startingRoom;
     }
+
+    @Override
+    public String getCommand() {
+        return null;
+    }
 }
