@@ -6,12 +6,17 @@
 package m3;
 
 
+import m3.character.ICharacter;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author Tobias Grundtvig
  */
 public class Room
 {
+    private ICharacter monster = null;
     private String description = "";
     private Room north;
     private Room east;
@@ -19,6 +24,10 @@ public class Room
     private Room west;
     private int gold = 0;
     private Inventory inventory = new Inventory();
+
+    public void setMonster(ICharacter monster) {
+        this.monster = monster;
+    }
 
     public void setDescription(String description) {
         this.description = description;

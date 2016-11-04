@@ -16,6 +16,7 @@ public class FightInterpreter implements IInterpreter {
 
     @Override
     public String interpret(String command) {
+        monster.takeDamage(player.getDamage());
         return null;
     }
 }

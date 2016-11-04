@@ -10,6 +10,7 @@ public class MovementInterpreter implements IInterpreter {
 
     public MovementInterpreter(ICharacter player) {
         this.player = player;
+        player.takeDamage(player.getDamage());
     }
 
     @Override

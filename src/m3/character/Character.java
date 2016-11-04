@@ -5,7 +5,7 @@ import m3.Room;
 /**
  * Created by Ejdems on 03/11/2016.
  */
-public abstract class Character implements ICharacter {
+public abstract class Character implements ICharacter, ICharacterController {
     protected Room currentRoom;
     protected String name;
     protected int health;
@@ -35,10 +35,5 @@ public abstract class Character implements ICharacter {
     @Override
     public int getDefense() {
         return defense;
-    }
-
-    @Override
-    public void moveHere(Room room) {
-        currentRoom = room;
     }
 }

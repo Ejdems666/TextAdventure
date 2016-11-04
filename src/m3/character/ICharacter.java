@@ -8,7 +8,7 @@ import m3.Room;
 public interface ICharacter extends ICharacterInfo{
     public void moveHere(Room room);
 
-    public void damageThis(ICharacter character);
+    public int getDamage();
 
     public void takeDamage(int damage);
 }

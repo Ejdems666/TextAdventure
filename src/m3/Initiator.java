@@ -13,13 +13,13 @@ public class Initiator {
     public Character createPlayer(Room startingRoom) {
         Form form = createPlayerForm();
         form.askForAllFields();
-        Character character;
+        Character player;
         if (form.get("type").equals("c")) {
-            character = new ComputerPlayer(startingRoom);
+            player = new ComputerPlayer(startingRoom);
         } else {
-            character = new HumanPlayer(startingRoom);
+            player = new HumanPlayer(startingRoom);
         }
-        return character;
+        return player;
     }
 
     private Form createPlayerForm() {

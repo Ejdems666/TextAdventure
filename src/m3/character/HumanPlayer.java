@@ -5,7 +5,7 @@ import m3.Room;
 /**
  * Created by Ejdems on 03/11/2016.
  */
-public class HumanPlayer extends Warrior implements ICharacterController {
+public class HumanPlayer extends Player {
     public HumanPlayer(Room startingRoom) {
         currentRoom = startingRoom;
     }
